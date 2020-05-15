@@ -23,16 +23,6 @@ import (
 	"time"
 )
 
-/*
-type Ser struct {
-}
-
-func BeginService() *Ser {
-	return &Ser{}
-}
-*/
-
-//func (ser *Ser) Start(confPath string) (string, error) {
 func SvcReg(confPath string) (string, error) {
 	conf, err := GetConf(confPath)
 	if err != nil {
@@ -42,9 +32,11 @@ func SvcReg(confPath string) (string, error) {
 
 	appInstanceId := conf.AppInstanceId
 	serviceInfos := conf.ServiceInfoPosts
-	url := "http://mep:8088/mec_service_mgmt/v1/applications/" + appInstanceId + "/services"
+	mepServerIP := conf.MepServerIP
+	mepServerPORT := conf.MepServerPORT
+	url := "http://" + mepServerIP + ":" + mepServerPORT + "/mep/mec_service_mgmt/v1/applications/" + appInstanceId + "/services"
 
-	for _, serviceInfo := range serviceInfos {
+    for _, serviceInfo := range serviceInfos {
 		data, e := json.Marshal(serviceInfo)
 		if e != nil {
 			log.Println("Failed to marshal service info to object")

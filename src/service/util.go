@@ -22,7 +22,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-        "github.com/khemendra0/mep_agent_lib/src/model"
+	"github.com/khemendra0/mep_agent_lib_2/src/model"
 )
 
 // get yaml and parse to struct
